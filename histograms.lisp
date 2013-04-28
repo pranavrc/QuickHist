@@ -21,3 +21,10 @@
   ;; Takes a list of bar counts and generates bars (-).
   (mapcar #'(lambda (each) (make-string each :initial-element #\-))
 	  target))
+
+(defun stringSplit (string delim)
+  ;; Splits a string into substrings around the delimiter.
+  (loop for x = 0 then (1+ y)
+     as y = (position delim string :start x)
+       collect (subseq string x y)
+     while y))
