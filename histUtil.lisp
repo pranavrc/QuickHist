@@ -12,6 +12,10 @@
   ;; each and the smallest in the list.
   (mapcar #'(lambda (each) (float (/ each (listMin target)))) target))
 
+(defun convertToListOfInts (target)
+  ;; Takes a list of strings and converts to a list of integers.
+  (mapcar #'parse-integer target))
+
 (defun barCount (target)
   ;; Takes a ratio list and counts the number of bars required
   ;; for the histogram.
@@ -21,6 +25,14 @@
   ;; Takes a list of bar counts and generates bars (-).
   (mapcar #'(lambda (each) (make-string each :initial-element #\-))
 	  target))
+
+(defun concatList (target)
+  ;; Takes a list of items and concatenates them with spaces in between.
+  (let ((lines target))
+    (with-output-to-string (s)
+      (dolist (line lines)
+	(write-line line s)
+	(terpri s)))))
 
 (defun stringSplit (string delim)
   ;; Splits a string into substrings around the delimiter.
