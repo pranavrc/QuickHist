@@ -17,4 +17,7 @@
 	   (histograms::stringSplit input #\-))))))))
     *histogramOutput*)
 
+(restas:define-route not-found ("*any")
+  hunchentoot:+http-not-found+)
+
 (restas:start :restas.histRenderer :port 8083)

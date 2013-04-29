@@ -14,7 +14,7 @@
 
 (defun convertToListOfInts (target)
   ;; Takes a list of strings and converts to a list of integers.
-  (mapcar #'parse-integer target))
+  (mapcar #'read-from-string target))
 
 (defun barCount (target)
   ;; Takes a ratio list and counts the number of bars required
@@ -32,7 +32,7 @@
     (with-output-to-string (s)
       (dolist (line lines)
 	(write-line line s)
-	(terpri s)))))
+	(princ "<br />" s)))))
 
 (defun stringSplit (string delim)
   ;; Splits a string into substrings around the delimiter.
