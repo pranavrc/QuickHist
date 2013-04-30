@@ -13,7 +13,7 @@
 	(histograms::concatList
 	 (histograms::generateBars
 	  (histograms::barCount
-	   (histograms::ratioList
+	   (histograms::percentList
 	    (histograms::convertToListOfInts
 	     (histograms::stringSplit input #\,)))))))))
       (error (e) (defparameter *histogramOutput* "Enter a valid set of numbers,
