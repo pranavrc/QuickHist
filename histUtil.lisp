@@ -35,13 +35,13 @@
   (mapcar #'(lambda (each) (make-string each :initial-element #\-))
 	  target))
 
-(defun concatList (target)
+(defun concatList (target delim)
   ;; Takes a list of items and concatenates them with spaces in between.
   (let ((lines target))
     (with-output-to-string (s)
       (dolist (line lines)
 	(write-line line s)
-	(princ "<br />" s)))))
+	(princ delim s)))))
 
 (defun stringSplit (string delim)
   ;; Splits a string into substrings around the delimiter.
@@ -49,3 +49,28 @@
      as y = (position delim string :start x)
        collect (subseq string x y)
      while y))
+
+(defun getLabelCountPairs (target delim)
+  ;; Get lists of label+count pairs from a split list.
+  (mapcar #'(lambda (each) (stringSplit each delim)) target))
+
+(defun listLabels (target)
+  ;; Extract labels from a list into a separate list.
+  (mapcar #'first target))
+
+(defun listCounts (target)
+  ;; Extract counts from a list into a separate list.
+  (mapcar #'second target))
+
+(defun maxLength (target)
+  ;; Returns length of longest string in a list.
+  (max (mapcan #'length target)))
+
+(defun bufferSeparator (target)
+  ;; Makes all list items to be of the same length as the max length,
+  ;; by buffering them with whitespace.
+  (mapcar #'(lambda (each)
+	      (concatenate 'string each 
+			   (make-string (- (maxLength target) (length each))
+					:initial-element #\Space)))
+	  target))

@@ -15,7 +15,7 @@
 	  (histograms::barCount
 	   (histograms::percentList
 	    (histograms::convertToListOfInts
-	     (histograms::stringSplit input #\,)))))))))
+	     (histograms::stringSplit input #\,))))) "<br />"))))
       (error (e) (defparameter *histogramOutput* "Enter a valid set of numbers,
 separated by Commas. (/25,50,100,75 or /1.2,2.4,0.6 for instance.)"))))
     *histogramOutput*)
