@@ -74,3 +74,11 @@
 			   (make-string (- (maxLength target) (length each))
 					:initial-element #\Space)))
 	  target))
+
+(defun equalizeLists (target)
+  ;; Takes a list of label-count pairs and ensure that all the sublists
+  ;; are paired up.
+  (mapcar #'(lambda (each)
+	      (if (second each)
+		  each
+		  (cons "" each))) target))
