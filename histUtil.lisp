@@ -36,12 +36,19 @@
 	  target))
 
 (defun concatList (target delim)
-  ;; Takes a list of items and concatenates them with spaces in between.
+  ;; Takes a list of items and concatenates them with
+  ;; the delimiter in between.
   (let ((lines target))
     (with-output-to-string (s)
       (dolist (line lines)
 	(write-line line s)
 	(princ delim s)))))
+
+(defun mergeListItems (labelList barList delim)
+  ;; Takes a list of bars and a list of label, and
+  ;; returns a list of concatenated label-bar pairs.
+  (mapcar #'(lambda (x y) (concatenate 'string x delim y))
+	  labelList barList))
 
 (defun stringSplit (string delim)
   ;; Splits a string into substrings around the delimiter.
@@ -64,7 +71,7 @@
 
 (defun maxLength (target)
   ;; Returns length of longest string in a list.
-  (max (mapcan #'length target)))
+  (apply #'max (mapcar #'length target)))
 
 (defun bufferSeparator (target)
   ;; Makes all list items to be of the same length as the max length,
