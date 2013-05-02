@@ -7,6 +7,7 @@
     (:use :cl))
 
 (in-package :restas.histRenderer)
+(restas:debug-mode-on)
 
 (setf (who:html-mode) :html5)
 
@@ -27,6 +28,17 @@
 	(histograms::getLabelCountPairs
 	 (histograms::stringSplit input #\,) #\=))))))))
 
+(defmacro responseTemplate (&body response)
+  `(who:with-html-output-to-string (*standard-output* nil :prologue t :indent t)
+    (:html
+     (:head
+      (:meta :charset "utf-8")
+      (:title "QuickHist"))
+     (:body
+      (:p :id "response"
+	  (:pre
+	   ,@response))))))
+
 (restas:define-route histInput (":(input)")
   (progn
     (handler-case
@@ -39,13 +51,7 @@
 	       (getBars input) " | ") "<br />"))))
       (error (e) (defparameter *histogramOutput* "Enter a valid set of numbers,
 separated by Commas. (/25,50,100,75 or /1.2,2.4,0.6 for instance.)"))))
-  (who:with-html-output-to-string (*standard-output* nil :prologue t)
-    (:html
-     (:head
-      (:meta :charset "utf-8")
-      (:title "QuickHist"))
-     (:body
-      (:p *histogramOutput*)))))
+  (responseTemplate (:response (who:str *histogramOutput*))))
 
 (restas:define-route not-found ("*any")
   hunchentoot:+http-not-found+)
