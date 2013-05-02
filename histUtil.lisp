@@ -61,15 +61,15 @@
   ;; Get lists of label+count pairs from a split list.
   (mapcar #'(lambda (each) (stringSplit each delim)) target))
 
+(defun listCounts (target)
+  ;; Extract counts from a list into a separate list.
+  (mapcar #'second target))
+
 (defun listLabels (target)
   ;; Extract labels from a list into a separate list.
   (mapcar #'(lambda (x y) (concatenate 'string x "(" y ")"))
 	  (mapcar #'first target)
 	  (listCounts target)))
-
-(defun listCounts (target)
-  ;; Extract counts from a list into a separate list.
-  (mapcar #'second target))
 
 (defun maxLength (target)
   ;; Returns length of longest string in a list.
