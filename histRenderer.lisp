@@ -30,14 +30,14 @@
 
 (defmacro responseTemplate (&body response)
   `(who:with-html-output-to-string (*standard-output* nil :prologue t :indent t)
-    (:html
-     (:head
-      (:meta :charset "utf-8")
-      (:title "QuickHist"))
-     (:body
-      (:p :id "response"
-	  (:pre
-	   ,@response))))))
+     (:html
+      (:head
+       (:meta :charset "utf-8")
+       (:title "QuickHist"))
+      (:body
+       (:p :id "response"
+	   (:pre
+	    ,@response))))))
 
 (restas:define-route histInput (":(input)")
   (progn
