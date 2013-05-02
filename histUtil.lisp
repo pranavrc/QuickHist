@@ -23,7 +23,7 @@
 
 (defun convertToListOfInts (target)
   ;; Takes a list of strings and converts to a list of integers.
-  (mapcar #'read-from-string target))
+  (mapcar #'abs (mapcar #'read-from-string target)))
 
 (defun barCount (target)
   ;; Takes a ratio list and counts the number of bars required
@@ -63,7 +63,9 @@
 
 (defun listLabels (target)
   ;; Extract labels from a list into a separate list.
-  (mapcar #'first target))
+  (mapcar #'(lambda (x y) (concatenate 'string x "(" y ")"))
+	  (mapcar #'first target)
+	  (listCounts target)))
 
 (defun listCounts (target)
   ;; Extract counts from a list into a separate list.
