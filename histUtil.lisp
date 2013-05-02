@@ -5,21 +5,21 @@
 
 (defun listMin (target)
   ;; Returns the minimum element in a list.
-  (apply #'min target))
+  (apply #'min (mapcar #'abs target)))
 
 (defun listMax (target)
   ;; Returns the maximum element in a list.
-  (apply #'max target))
+  (apply #'max (mapcar #'abs target)))
 
 (defun ratioList (target)
   ;; Takes a list of numbers and returns the ratios between
   ;; each and the smallest in the list.
-  (mapcar #'(lambda (each) (float (/ each (listMin target)))) target))
+  (mapcar #'(lambda (each) (float (/ (abs each) (listMin target)))) target))
 
 (defun percentList (target)
   ;; Takes a list of numbers and returns the percentage
   ;; of each number with respect to the largest in the list.
-  (mapcar #'(lambda (each) (float (* (/ each (listMax target)) 50))) target))
+  (mapcar #'(lambda (each) (float (* (/ (abs each) (listMax target)) 50))) target))
 
 (defun convertToListOfInts (target)
   ;; Takes a list of strings and converts to a list of integers.
