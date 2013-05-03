@@ -37,7 +37,7 @@
       (:head
        (:meta :charset "utf-8")
        (:title "QuickHist")
-       (:link :rel "stylesheet" :href "index.css"))
+       (:link :rel "stylesheet" :href (restas:genurl 'css)))
       (:body
        (:p :id "response"
 	   ,@response)))))
@@ -48,7 +48,7 @@
 (restas:define-route css ("index.css")
   (pathname "~/workbase/cl-ascii-histograms/res/index.css"))
 
-(restas:define-route histInput (":(input)")
+(restas:define-route histInput (":(input)/*title")
   (progn
     (handler-case
 	(progn
