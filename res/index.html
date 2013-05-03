@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>QuickHist - ASCII Histograms API</title>
+		<link rel="stylesheet" href="index.css">
+		<link rel="shortcut icon" type="image/png" href=/favicon.ico">
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		<div id="description">
+			<h1>QuickHist</h1>
+			<p>
+			
+			<p id="exp">Generate ASCII Histograms from the URL.</p><br /><br />
+			
+			Type a list of comma-delimited numbers to generate a histogram: <br /><br /><a href="25,50,75,100,75,50,25" target="_blank">http://quickhist.onloop.net/25,50,75,100,75,50,25</a><br /><br /><br />
+			
+			Wanna insert labels? Separate the numbers and labels with an equals (=) sign:<br /><br /><a href="Tom=25,Dick=75,Harry=50" target="_blank">http://quickhist.onloop.net/Tom=25,Dick=75,Harry=50</a></p><br /><br /><br />
+			
+			Try it:<br /> http://hs.onloop.net/<form id="requests" onsubmit="return formSubmit();" style="display:inline!important;"><input id="api" type="text" placeholder="1,2,3 or a=1,b=2,c=3" /></form>
+		</div>
+
+		<script>
+			function formSubmit() {
+				var entry = document.getElementById('api').value;
+				entry.replace(/\s+/g, '_');
+				if (!entry) return;
+				window.location.href = entry;
+				return false;
+			}
+		</script>
+	</body>
+</html>
