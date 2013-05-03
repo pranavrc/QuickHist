@@ -11,8 +11,7 @@
 
 (setf (who:html-mode) :html5)
 
-(defparameter *invalidEntry* "Enter a valid set of numbers, separated by Commas.<br />
-/25,50,100,75 or /1.2,2.4,0.6 for instance.")
+(defparameter *invalidEntry* "<a href=\"\/\">Back Home</a>.")
 
 (defparameter *invalidURL* "Yeah, well, y'know, that's just like, uh, a bad URL, man.")
 
