@@ -10,6 +10,9 @@
 (restas:debug-mode-on)
 
 (setf (who:html-mode) :html5)
+(setf *invalidEntry* "Enter a valid set of numbers, separated by Commas.
+
+/25,50,100,75 or /1.2,2.4,0.6 for instance.")
 
 (defun getLabels (input)
   (histograms::bufferSeparator
@@ -33,11 +36,18 @@
      (:html
       (:head
        (:meta :charset "utf-8")
-       (:title "QuickHist"))
+       (:title "QuickHist")
+       (:link :rel "stylesheet" :href "index.css"))
       (:body
        (:p :id "response"
-	   (:pre
-	    ,@response))))))
+	   ,@response)))))
+
+(defmacro staticHandler (routeName route fileName)
+  (restas:define-route routeName (route)
+    (pathname (concatenate 'string "~/workbase/cl-ascii-histograms/res/" fileName))))
+
+(staticHandler `main "" "index.html")
+(staticHandler `css "index.css" "index.css")
 
 (restas:define-route histInput (":(input)")
   (progn
@@ -48,9 +58,11 @@
 	     (histograms::concatList
 	      (histograms::mergeListItems
 	       (getLabels input)
-	       (getBars input) " | ") "<br />"))))
-      (error (e) (defparameter *histogramOutput* "Enter a valid set of numbers,
-separated by Commas. (/25,50,100,75 or /1.2,2.4,0.6 for instance.)"))))
-  (responseTemplate (:response (who:str *histogramOutput*))))
+	       (getBars input) " | ") #\return))))
+      (error (e) (defparameter *histogramOutput* *invalidEntry*))))
+  (responseTemplate (:pre (who:str *histogramOutput*))))
+
+(restas:define-route not-found ("*any")
+  (responseTemplate (:pre (who:str "Ouch, bad URL there."))))
 
 (restas:start :restas.histRenderer :port 8083)
