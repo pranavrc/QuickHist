@@ -5,6 +5,18 @@
 		<link rel="stylesheet" href="/index.css">
 		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 		<meta charset="utf-8" />
+
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-40647509-1']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
 	</head>
 	<body>
 		<div id="description">
@@ -12,12 +24,12 @@
 			<p id="exp">Generate ASCII Histograms from the URL.</p><br />
 			<p>
 			Type a list of comma-separated numbers to generate a histogram: <br /><br /><a href="25,50,75,100,75,50,25" target="_blank">http://quickhist.onloop.net/25,50,75,100,75,50,25</a><br /><br /><br />
-			
+
 			Wanna insert labels? Separate the numbers and labels with an equals (=) sign:<br /><br /><a href="The Dude=100,Walter=133,Donny=138" target="_blank">http://quickhist.onloop.net/The Dude=100,Walter=133,Donny=138</a><br /><br /><br />
 
 			Wanna insert a title? Type it out after the histogram data like so:<br /><br /><a href="The Dude=100,Walter=133,Donny=138/Bowling Scores" target="_blank">http://quickhist.onloop.net/The Dude=100,Walter=133,Donny=138/Bowling Scores</a><br /><br />
 			</p>
-			
+
 			Try it:<br /> http://quickhist.onloop.net/<form id="requests" onsubmit="return formSubmit();" style="display:inline!important;"><input id="api" type="text" placeholder="a=0.1,b=0.01,c=1.2/Random" /></form><br />
 			<p id="ins">(Certain Special Characters like %, ? and # don't work. Negative numbers are made absolute.)</p><br />
 
