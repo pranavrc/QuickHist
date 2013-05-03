@@ -10,9 +10,11 @@
 (restas:debug-mode-on)
 
 (setf (who:html-mode) :html5)
-(setf *invalidEntry* "Enter a valid set of numbers, separated by Commas.
 
+(defparameter *invalidEntry* "Enter a valid set of numbers, separated by Commas.<br />
 /25,50,100,75 or /1.2,2.4,0.6 for instance.")
+
+(defparameter *invalidURL* "Yeah, well, y'know, that's just like, uh, a bad URL, man.")
 
 (defun getLabels (input)
   (histograms::bufferSeparator
@@ -31,14 +33,16 @@
 	(histograms::getLabelCountPairs
 	 (histograms::stringSplit input #\,) #\=))))))))
 
-(defmacro responseTemplate (&body response)
+(defmacro responseTemplate ((&key header) &body response)
   `(who:with-html-output-to-string (*standard-output* nil :prologue t :indent t)
      (:html
       (:head
        (:meta :charset "utf-8")
        (:title "QuickHist")
-       (:link :rel "stylesheet" :href (restas:genurl 'css)))
+       (:link :rel "stylesheet" :href (restas:genurl 'css))
+       (:link :rel "shortcut icon" :type "image/x-icon" :href (restas:genurl 'favicon)))
       (:body
+       (:h3 ,header)
        (:p :id "response"
 	   ,@response)))))
 
@@ -48,20 +52,27 @@
 (restas:define-route css ("index.css")
   (pathname "~/workbase/cl-ascii-histograms/res/index.css"))
 
+(restas:define-route favicon ("favicon.ico")
+  (pathname "~/workbase/cl-ascii-histograms/res/favicon.ico"))
+
 (restas:define-route histInput (":(input)/*title")
   (progn
     (handler-case
 	(progn
 	  (eval
-	   (defparameter *histogramOutput*
-	     (histograms::concatList
-	      (histograms::mergeListItems
-	       (getLabels input)
-	       (getBars input) " | ") #\return))))
-      (error (e) (defparameter *histogramOutput* *invalidEntry*))))
-  (responseTemplate (:pre (who:str *histogramOutput*))))
+	   (progn
+	     (defparameter histogramTitle (first title))
+	     (defparameter histogramOutput
+	       (histograms::concatList
+		(histograms::mergeListItems
+		 (getLabels input)
+		 (getBars input) " | ") #\return)))))
+      (error (e) 
+	(defparameter histogramTitle *invalidURL*)
+	(defparameter histogramOutput *invalidEntry*))))
+  (responseTemplate (:header (who:str histogramTitle)) (:pre (who:str histogramOutput))))
 
 (restas:define-route not-found ("*any")
-  (responseTemplate (:pre (who:str "Ouch, bad URL there."))))
+  (responseTemplate (:header (who:str *invalidURL*)) (:pre (who:str *invalidEntry*))))
 
 (restas:start :restas.histRenderer :port 8080)
