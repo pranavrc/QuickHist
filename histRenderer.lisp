@@ -46,13 +46,13 @@
 	   ,@response)))))
 
 (restas:define-route main ("")
-  (pathname "~/workbase/cl-ascii-histograms/res/index.html"))
+  (pathname "~/workbase/QuickHist/res/index.html"))
 
 (restas:define-route css ("index.css")
-  (pathname "~/workbase/cl-ascii-histograms/res/index.css"))
+  (pathname "~/workbase/QuickHist/res/index.css"))
 
 (restas:define-route favicon ("favicon.ico")
-  (pathname "~/workbase/cl-ascii-histograms/res/favicon.ico"))
+  (pathname "~/workbase/QuickHist/res/favicon.ico"))
 
 (restas:define-route histInput (":(input)/*title")
   (progn
