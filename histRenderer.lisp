@@ -42,12 +42,11 @@
        (:p :id "response"
 	   ,@response)))))
 
-(defmacro staticHandler (routeName route fileName)
-  (restas:define-route routeName (route)
-    (pathname (concatenate 'string "~/workbase/cl-ascii-histograms/res/" fileName))))
+(restas:define-route main ("")
+  (pathname "~/workbase/cl-ascii-histograms/res/index.html"))
 
-(staticHandler `main "" "index.html")
-(staticHandler `css "index.css" "index.css")
+(restas:define-route css ("index.css")
+  (pathname "~/workbase/cl-ascii-histograms/res/index.css"))
 
 (restas:define-route histInput (":(input)")
   (progn
@@ -65,4 +64,4 @@
 (restas:define-route not-found ("*any")
   (responseTemplate (:pre (who:str "Ouch, bad URL there."))))
 
-(restas:start :restas.histRenderer :port 8083)
+(restas:start :restas.histRenderer :port 8080)
