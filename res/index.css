@@ -1,0 +1,41 @@
+body {
+	background-color: hsl(0,0%,95%);
+}
+
+#description {
+	margin: auto;
+	width: 60%;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	text-shadow: hsla(0,0%,40%,0.5) 0 -1px 0, hsla(0,0%,100%,.6) 0 2px 1px;
+	text-align: left;
+}
+
+#exp {
+	text-align: center;
+	font-size: 15px;
+}
+
+h1 {
+	text-align: center;
+}
+
+input {
+	height: 17px;
+	border: 1px solid white;
+	border-radius: 5px;
+}
+
+pre {
+	font-size:11px;
+	text-align: left;
+	line-height: 75%;
+}
+
+a:link {
+	color: #800000;
+}
+
+a:visited {
+	color: #696969; 
+}
