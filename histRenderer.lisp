@@ -46,13 +46,13 @@
 	   ,@response)))))
 
 (restas:define-route main ("")
-  (pathname "~/workbase/QuickHist/res/index.html"))
+  (pathname "/home/vanharp/workbase/QuickHist/res/index.html"))
 
 (restas:define-route css ("index.css")
-  (pathname "~/workbase/QuickHist/res/index.css"))
+  (pathname "/home/vanharp/workbase/QuickHist/res/index.css"))
 
 (restas:define-route favicon ("favicon.ico")
-  (pathname "~/workbase/QuickHist/res/favicon.ico"))
+  (pathname "/home/vanharp/workbase/QuickHist/res/favicon.ico"))
 
 (restas:define-route histInput (":(input)/*title")
   (progn
