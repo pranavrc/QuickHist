@@ -33,7 +33,7 @@
 	 (histograms::stringSplit input #\,) #\=))))))))
 
 (defmacro responseTemplate ((&key header) &body response)
-  `(who:with-html-output-to-string (*standard-output* nil :prologue t :indent t)
+  `(who:with-html-output-to-string (*standard-output* nil :prologue t)
      (:html
       (:head
        (:meta :charset "utf-8")
@@ -69,7 +69,8 @@
       (error (e) 
 	(defparameter histogramTitle *invalidURL*)
 	(defparameter histogramOutput *invalidEntry*))))
-  (responseTemplate (:header (who:str histogramTitle)) (:pre (who:str histogramOutput))))
+  (responseTemplate (:header (who:str histogramTitle)) (:pre (who:str
+							      (concatenate 'string (list #\Newline) histogramOutput)))))
 
 (restas:define-route not-found ("*any")
   (responseTemplate (:header (who:str *invalidURL*)) (:pre (who:str *invalidEntry*))))
