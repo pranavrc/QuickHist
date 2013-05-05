@@ -75,4 +75,4 @@
 (restas:define-route not-found ("*any")
   (responseTemplate (:header (who:str *invalidURL*)) (:pre (who:str *invalidEntry*))))
 
-;;(restas:start :restas.histRenderer :port 8080)
+(restas:start :restas.histRenderer :port 8080)

@@ -1,6 +1,5 @@
 (require 'asdf)
 
-(ql:quickload :restas)
-
 (asdf:operate 'asdf:load-op '#:quickhist)
-(restas:start '#:restas.histRenderer :hostname "quickhist.onloop.net" :port 8080)
+;;(restas:start '#:restas.histRenderer :port 8080)
+(load "/home/vanharp/workbase/QuickHist/histRenderer.lisp")
