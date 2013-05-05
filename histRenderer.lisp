@@ -58,14 +58,12 @@
   (progn
     (handler-case
 	(progn
-	  (eval
-	   (progn
-	     (defparameter histogramTitle (first title))
-	     (defparameter histogramOutput
-	       (histograms::concatList
-		(histograms::mergeListItems
-		 (getLabels input)
-		 (getBars input) " | ") #\return)))))
+	  (defparameter histogramTitle (first title))
+	  (defparameter histogramOutput
+	    (histograms::concatList
+	     (histograms::mergeListItems
+	      (getLabels input)
+	      (getBars input) " | ") #\return)))
       (error (e) 
 	(defparameter histogramTitle *invalidURL*)
 	(defparameter histogramOutput *invalidEntry*))))
