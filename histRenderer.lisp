@@ -63,7 +63,7 @@
 	    (histograms::concatList
 	     (histograms::mergeListItems
 	      (getLabels input)
-	      (getBars input) " | ") #\return)))
+	      (getBars input) " | ") "")))
       (error (e) 
 	(defparameter histogramTitle *invalidURL*)
 	(defparameter histogramOutput *invalidEntry*))))
