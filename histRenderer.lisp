@@ -54,19 +54,22 @@
 (restas:define-route favicon ("favicon.ico")
   (pathname "/home/vanharp/workbase/QuickHist/res/favicon.ico"))
 
+(restas:define-route fromtheterm ("fromtheterm.png")
+  (pathname "/home/vanharp/workbase/QuickHist/res/fromtheterm.png"))
+
 (restas:define-route histInput (":(input)/*title")
   (progn
     (handler-case
 	(progn
-	  (defparameter histogramTitle (first title))
-	  (defparameter histogramOutput
+	  (setf histogramTitle (first title))
+	  (setf histogramOutput
 	    (histograms::concatList
 	     (histograms::mergeListItems
 	      (getLabels input)
 	      (getBars input) " | ") "")))
       (error (e) 
-	(defparameter histogramTitle *invalidURL*)
-	(defparameter histogramOutput *invalidEntry*))))
+	(setf histogramTitle *invalidURL*)
+	(setf histogramOutput *invalidEntry*))))
   (responseTemplate (:header (who:str histogramTitle)) (:pre (who:str
 							      (concatenate 'string (list #\Newline) histogramOutput)))))
 
