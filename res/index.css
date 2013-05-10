@@ -1,13 +1,28 @@
 body {
 	background-color: hsl(0,0%,95%);
+	line-height: 175%;
 }
 
 #description {
 	margin: auto;
-	width: 60%;
+	/*width: 60%;*/
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
-	font-size: 15px;
+	font-size: 14px;
 	text-shadow: hsla(0,0%,40%,0.5) 0 -1px 0, hsla(0,0%,100%,.6) 0 2px 1px;
+	text-align: center;
+}
+
+#fromtheterm {
+	margin: auto;
+	text-align: center;
+}
+
+img {
+	border-radius: 5px;
+}
+
+#howto {
+	margin-left: 15%;
 	text-align: left;
 }
 
@@ -19,10 +34,12 @@ h3 {
 #exp {
 	text-align: center;
 	font-size: 13px;
-	margin-bottom: 35px;
+	margin-bottom: 5px;
 }
 
 #footer,#ins {
+	display: block;
+	margin-top: 0px;
 	font-size: 11px;
 }
 
@@ -42,6 +59,7 @@ hr {
 
 h1 {
 	text-align: center;
+	margin-bottom: 5px;
 }
 
 input {
